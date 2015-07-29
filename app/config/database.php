@@ -7,7 +7,7 @@ return array(
             'default' => array(
                 'driver'    => 'mysql',
                 'host'      => 'localhost',
-                'database'  => 'sifoni',
+                'database'  => 'phpsimple',
                 'username'  => 'root',
                 'password'  => '',
                 'charset'   => 'utf8',
