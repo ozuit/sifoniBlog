@@ -1,7 +1,7 @@
 {% block content %}{% endblock %}
 {% extends 'layout.html.twig' %}
 {% block menu %}
-<p class="important">
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -24,13 +24,13 @@
 				</ul>
 				<div class="navbar-right">
 					<a href="/login.html"><button class="btn btn-danger navbar-btn">Đăng Nhập</button></a>
-					<a href="#"><button class="btn btn-info navbar-btn">Đăng Ký</button></a>
+					<a href="/register.html"><button class="btn btn-info navbar-btn">Đăng Ký</button></a>
 				</div>
 			</div>
 		</div>
 	</nav> 
-</p>
+
 {% endblock %}
 {% block contentleft %}
-<h3>Thanh menu trái</h3>
+<div class="content-left">Thanh Menu Trái</div>
 {% endblock %}

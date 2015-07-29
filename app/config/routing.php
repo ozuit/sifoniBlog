@@ -6,5 +6,6 @@ return array(
         '/hello/{name}' => 'HomeController:hello:hello_person:name=world',
         '/test' => 'HomeController:test:test_post::get',
         '/login.html' => 'UserController:index:login::get',
+        '/register.html' => 'UserController:register:register::get',
     )
 );
