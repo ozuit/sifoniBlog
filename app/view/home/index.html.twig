@@ -1,10 +1,50 @@
-{% extends 'layout.html.twig' %}
+{% extends 'layout/index.html.twig' %}
 {% block content %}
-    Nội dung thay đổi cho trang web
-{% endblock %}
+<h2>Bài VIẾT MỚI NHẤT</h2>
+{% for p in post %} 
+<div class="row" style="margin-top:10px;">
+	<div class="col-md-2">
+		<a href="#">
+			<img class="img-responsive" src="{{p.images}}">
+		</a>
+	</div>
+	<div class="col-md-10">
+		<h3>{{p.title}}</h3>
+		<span class="post-date" itemprop="datePublished"><i class="fa fa-clock-o"></i>{{p.datetime}}
+		</span>
+		<p style="margin-top:5px;">{{p.description}}</p>
+		<a class="btn btn-primary" href="#">Xem Bài <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+</div>
+{% endfor %}
+<div class="clear"></div>
 
-{% block menu %}
-    <p class="important">
-        Nội dung thay đổi cho thanh menu
-    </p>
+<!-- Pagination -->
+<div class="row text-center">
+	<div class="col-lg-12">
+		<ul class="pagination">
+			<li>
+				<a href="#">&laquo;</a>
+			</li>
+			<li class="active">
+				<a href="#">1</a>
+			</li>
+			<li>
+				<a href="#">2</a>
+			</li>
+			<li>
+				<a href="#">3</a>
+			</li>
+			<li>
+				<a href="#">4</a>
+			</li>
+			<li>
+				<a href="#">5</a>
+			</li>
+			<li>
+				<a href="#">&raquo;</a>
+			</li>
+		</ul>
+	</div>
+</div>
 {% endblock %}

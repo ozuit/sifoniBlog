@@ -1,0 +1,36 @@
+{% block content %}{% endblock %}
+{% extends 'layout.html.twig' %}
+{% block menu %}
+<p class="important">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+			</div>
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="nav navbar-nav">
+					{% for m in menu %} 
+					<li>
+						<a href="#">{{m.name}}</a>
+					</li>
+					{% endfor %}
+					<ul>
+					</ul>
+				</ul>
+				<div class="navbar-right">
+					<a href="/login.html"><button class="btn btn-danger navbar-btn">Đăng Nhập</button></a>
+					<a href="#"><button class="btn btn-info navbar-btn">Đăng Ký</button></a>
+				</div>
+			</div>
+		</div>
+	</nav> 
+</p>
+{% endblock %}
+{% block contentleft %}
+<h3>Thanh menu trái</h3>
+{% endblock %}
