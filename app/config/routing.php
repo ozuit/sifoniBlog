@@ -7,5 +7,6 @@ return array(
         '/test' => 'HomeController:test:test_post::get',
         '/login.html' => 'UserController:index:login::get',
         '/register.html' => 'UserController:register:register::get',
+        '/user-detail.html' => 'UserController:userinfo:userinfo::get',
     )
 );
