@@ -8,5 +8,9 @@ return array(
         '/login.html' => 'UserController:index:login::get',
         '/register.html' => 'UserController:register:register::get',
         '/user-detail.html' => 'UserController:userinfo:userinfo::get',
+    ),
+    '/admin' => array(
+        '/' => 'admin\AdminController:index:admin::get',
+        
     )
 );

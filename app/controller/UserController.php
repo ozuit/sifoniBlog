@@ -25,17 +25,17 @@ class UserController extends Base
             exit();
         }
         
-        return $this->render('user/login.html.twig', $data);
+        return $this->render('default/user/login.html.twig', $data);
     }
     public function registerAction() {
         $data['title'] = 'Đăng Kí | Blog Tin Tức';
         $data['menu'] = Menu::where('status', 1)->get();
-        return $this->render('user/register.html.twig', $data);
+        return $this->render('default/user/register.html.twig', $data);
     }
     public function userinfoAction(){
         $data['title'] = 'Đăng Kí| Blog Tin Tức';
         $data['menu'] = Menu::where('status', 1)->get();
-        return $this->render('user/detail.html.twig', $data);
+        return $this->render('default/user/detail.html.twig', $data);
 
     }
 }

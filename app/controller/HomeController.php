@@ -11,12 +11,12 @@ class HomeController extends Base {
         $data['title']='Blog Tin Tức';
         $data['menu'] = Menu::where('status',1)->get();
         $data['post'] =Post::where('status',1)->get();
-        return $this->render('home/index.html.twig', $data);
+        return $this->render('default/home/index.html.twig', $data);
     }
     public function testAction(){
         $data['title']='Tin Nổi Bật | Blog Tin Tức';
         $data['menu'] = Menu::where('status',1)->get();
-        return $this->render('category/index.html.twig', $data);
+        return $this->render('default/category/index.html.twig', $data);
     }
 
 }
