@@ -87,3 +87,16 @@ footer{
     display: block;
     margin-top: 10px;
 }
+.content-left{
+   margin-top: 10px;
+   margin-left: 70px;  
+}
+.bestnews-left{
+    margin-top: 50px;
+
+}
+.title{
+    font-size: 16px;
+    color: gray;
+    margin-left: 15px;
+}

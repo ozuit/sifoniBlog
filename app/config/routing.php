@@ -11,6 +11,9 @@ return array(
     ),
     '/admin' => array(
         '/' => 'admin\AdminController:index:admin::get',
-        
+        '/home.html'=>'admin\AdminController:home:adminhome::get',
+        '/login.html'=>'admin\AuthController:index:loginadmin::post',
+        '/logout.html'=>'admin\AuthController:logout:logoutadmin::post',
+        '/category.html'=>'admin\CategoryController:index:list_category::post',
     )
 );

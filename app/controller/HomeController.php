@@ -18,5 +18,4 @@ class HomeController extends Base {
         $data['menu'] = Menu::where('status',1)->get();
         return $this->render('default/category/index.html.twig', $data);
     }
-
 }

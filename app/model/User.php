@@ -12,9 +12,8 @@ class User extends Base {
 		$username=$postData['username'];
 		$password=$postData['password'];
 		$user = User::where('username', '=', $username)->first();
-		// var_dump($user);die();
 		if ($user && $user->password == md5($password)) {
-			return true;
+			return $user;
 		}
 
 		return false;
