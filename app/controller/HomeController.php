@@ -24,18 +24,18 @@ class HomeController extends Base {
         return $this->render('home/index.html.twig', $data);
     }
 
-    public function showArticleAction($article_id)
+    public function showArticleAction($article_slug)
     {
         $data = array();
 
-    	$data['article'] = Article::where('id', '=', $article_id)->get()[0];
+    	$data['article'] = Article::where('slug', '=', $article_slug)->get()[0];
 
-        $data['tags_id'] = Articles_Tags::where('article_id', '=', $article_id)->get(['tag_id']);
+        $data['tags_id'] = Articles_Tags::where('article_id', '=', $data['article']['id'])->get(['tag_id']);
         foreach ($data['tags_id'] as $idtag) {
             $data['tags_name'][] = Tags::where('id', '=', $idtag['tag_id'])->get()[0];
         }
 
-        $data['comments'] = Comment::join('users', 'users.id', '=', 'comments.user_id')->where('article_id', '=', $article_id)->select('username', 'date', 'comment')->get();
+        $data['comments'] = Comment::join('users', 'users.id', '=', 'comments.user_id')->where('article_id', '=', $data['article']['id'])->select('username', 'date', 'comment')->get();
         
         $data['four_articles'] = Article::orderBy('id','desc')->limit(5)->get();
         $data['four_category'] = Category::orderBy('id','desc')->limit(5)->get();
@@ -43,7 +43,7 @@ class HomeController extends Base {
         return $this->render('article/showArticle.html.twig', $data);
     }
 
-    public function showCategoryAction($category_id)
+    public function showCategoryAction($category_slug)
     {
         $data = array();
 
@@ -52,7 +52,9 @@ class HomeController extends Base {
             $data['number_comment'][$article['id']] = count(Comment::where('article_id', '=', $article['id'])->get());
         }
 
-        $data['articles'] = Article::where('category_id', '=', $category_id)->get();
+        $category_id = Category::where('slug', '=', $category_slug)->select('id')->get()[0];
+
+        $data['articles'] = Article::where('category_id', '=', $category_id['id'])->get();
 
         $data['four_articles'] = Article::orderBy('id','desc')->limit(5)->get();
         $data['four_category'] = Category::orderBy('id','desc')->limit(5)->get();
@@ -60,12 +62,12 @@ class HomeController extends Base {
         return $this->render('category/showCategory.html.twig', $data);
     }
 
-    public function showTagAction($tag_name)
+    public function showTagAction($tag_slug)
     {
         $data = array();
 
-        $tag_name = trim($tag_name);
-        $tag_id = Tags::where('name', '=', $tag_name)->select('id')->get()[0];
+        $tag_slug = trim($tag_slug);
+        $tag_id = Tags::where('slug', '=', $tag_slug)->select('id')->get()[0];
 
         $data['articles_id'] =  Articles_Tags::where('tag_id', '=', $tag_id['id'])->select('article_id')->get();
 

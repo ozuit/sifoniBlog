@@ -8,10 +8,10 @@
 	 <div class="content-grid-info">
 		 <img src="{{ article.image_url }}" alt=""/>
 		 <div class="post-info">
-		 <h4><a href="/article/{{ article.id }}.html">{{ article.title }}</a></h4>
+		 <h4><a href="/article/{{ article.slug }}.html">{{ article.title }}</a></h4>
 		 <p>{{ article.date_up|date('M d, Y') }} / {{ number_comment[article.id] }} Comments</p>
 		 <p>{{ article.description }}</p>
-		 <a href="/article/{{ article.id }}.html"><span></span>READ MORE</a>
+		 <a href="/article/{{ article.slug }}.html"><span></span>READ MORE</a>
 		 </div>
 	 </div>
 	{% endfor %}

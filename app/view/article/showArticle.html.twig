@@ -3,14 +3,14 @@
 <div class="col-md-8 content-main">
 	 
   <div class="single-grid">
-		<h3><a href="/article/{{ article.id }}">{{ article.title }}</a></h3>						 					 
+		<h3><a href="/article/{{ article.slug }}">{{ article.title }}</a></h3>						 					 
 		<p>{{ article.content|raw }}</p>
 		<p>
 			<hr>	
 			<span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 
 			<lebel style="font-size:18px;margin-left:5px;color:#666;">Từ khóa:</label> 
 			{% for tag in tags_name %}
-			<a href="/tag/{{ tag.name }}/" class="btn btn-default btn-xs">{{ tag.name }}</a>
+			<a href="/tag/{{ tag.slug }}/" class="btn btn-default btn-xs">{{ tag.name }}</a>
 			{% endfor %}
 		</p>
   </div>
