@@ -7,7 +7,7 @@ return array(
             'default' => array(
                 'driver'    => 'mysql',
                 'host'      => 'localhost',
-                'database'  => 'phpsimple',
+                'database'  => 'myblog',
                 'username'  => 'root',
                 'password'  => '',
                 'charset'   => 'utf8',

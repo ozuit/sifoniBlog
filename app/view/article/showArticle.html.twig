@@ -1,0 +1,55 @@
+{% extends 'layout/index.html.twig' %}
+{% block content %}
+<div class="col-md-8 content-main">
+	 
+  <div class="single-grid">
+		<h3><a href="/article/{{ article.id }}">{{ article.title }}</a></h3>						 					 
+		<p>{{ article.content|raw }}</p>
+		<p>
+			<hr>	
+			<span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 
+			<lebel style="font-size:18px;margin-left:5px;color:#666;">Từ khóa:</label> 
+			{% for tag in tags_name %}
+			<a href="/tag/{{ tag.id }}" class="btn btn-default btn-xs">{{ tag.name }}</a>
+			{% endfor %}
+		</p>
+  </div>
+
+	 <ul class="comment-list">
+	 	<h5 class="list_comment">Các bình luận cho bài viết này</h5>
+	 	{% set count = 0 %}
+	 	{% for comment in comments %} 
+	 	{% set count = count + 1 %}
+	 	<li>
+  		   <div class="desc">
+  		   		<div class="content_comment">{{ comment.user_id}} đã viết vào {{ comment.date|date('d/m/Y') }}: <p>{{ comment.comment }}</p></div>
+  		   </div>
+  		   <div class="clearfix"></div>
+	   	</li>
+  		{% endfor %}
+
+  		{% if count == 0 %}
+  		<li>
+	  		<div class="desc">
+	  		<div class="content_comment">Không có bình luận nào!</div>
+	  		</div>
+	  		<div class="clearfix"></div>
+  		</li>
+  		{% endif %}
+  	  </ul>
+
+  	  {% if app.session.has('logged') %}
+  	  {% set logged = app.session.get('logged') %}
+	  {% set id = logged['id'] %}
+	  <div class="content-form">
+			 <h3>Để lại bình luận</h3>
+			<form method="POST">
+				<textarea placeholder="Nhập vào nội dung bình luận" name="comment"></textarea>
+				<input type="hidden" name="user_id" value="{{ id }}">
+				<input type="submit" value="Gửi"/>
+		   </form>
+	 </div>
+	 {% endif %}
+</div>
+{% endblock %}
+

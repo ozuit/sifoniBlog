@@ -1,0 +1,50 @@
+{% extends 'layout/index.html.twig' %}
+{% block content %}
+<div class="col-md-8 content-main">
+  <div class="account">
+    <h3 class="text-center">Đăng ký thành viên</h3>
+    {% if error_register is defined %}
+    <div class="alert alert-warning" style="color:red">
+          {{ error_register }}
+    </div>
+    {% endif %}
+
+    <form action="" method="POST" role="form">
+
+      <div class="form-group">
+        <label for="">Tên đăng nhập</label>
+        <input type="text" class="form-control" id="inputUserName" placeholder="Nhập vào tên đăng nhập" name="username" value="{% if postData is defined %} {{ postData.username }} {% endif %}" required="required">
+      </div>
+
+      <div class="form-group">
+        <label for="">Mật khẩu</label>
+        <input type="password" id="inputPassword" placeholder="Nhập vào mật khẩu" name="password" class="form-control" required="required">
+      </div>
+
+      <div class="form-group">
+        <label for="">Họ và tên</label>
+        <input type="text" class="form-control" id="inputFullName" placeholder="Nhập vào họ và tên đầy đủ" name="fullname" value="{% if postData is defined %} {{ postData.fullname }} {% endif %}" required="required">
+      </div>
+
+      <div class="form-group">
+        <label for="">Email</label>
+        <input type="email" id="inputEmail" placeholder="Nhập vào địa chỉ email" name="email" value="{% if postData is defined %} {{ postData.email }} {% endif %}" class="form-control" required="required">
+      </div>
+
+      <div class="form-group">
+        <label for="">Số điện thoại</label>
+        <input type="text" class="form-control" id="inputPhone" placeholder="Nhập vào số điện thoại cá nhân" name="phone" value="{% if postData is defined %} {{ postData.phone }} {% endif %}" required="required">
+      </div>
+    
+      <div class="form-group">
+        <label for="">Địa chỉ</label>
+        <textarea name="address" id="inputAddress" class="form-control" rows="3" required="required" placeholder="Nhập vào địa chỉ nơi ở hiện tại">{% if postData is defined %} {{ postData.address }} {% endif %}</textarea>
+      </div>
+
+      <button type="reset" class="btn btn-primary">Nhập lại</button>
+      <button type="submit" class="btn btn-success">Đăng ký</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+

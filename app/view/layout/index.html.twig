@@ -1,0 +1,56 @@
+{% extends 'default.html.twig' %}
+{% block sidebar %}
+<div class="col-md-4 content-right">
+ <div class="sidebar_account">
+ 	<h3>Đăng nhập hệ thống</h3>
+ 	{% if error_login is defined %}
+		<div class="alert alert-danger" style="color:red">
+		   	{{ error_login }}
+		</div>
+	{% endif %}
+
+	{% if app.session.has('logged') %}
+	{% set logged = app.session.get('logged') %}
+	{% set username = logged['username'] %}
+	<ul class="nav nav-theme">	
+		<li><a href="index.php?c=user&m=update&p=home">Welcome <strong>{{ username }}</strong></a></li>
+	    <li><a href="/user/logout/">Đăng xuất</a></li>
+    </ul>
+    {% else %}
+	<form action="/user/login/" method="POST" role="form">
+	
+		<div class="form-group">
+			<label for="inputUsername">Tên đăng nhập</label>
+			<input type="text" name="username" id="input" class="form-control" required="required" placeholder="Nhập vào username">
+		</div>
+
+		<div class="form-group">
+			<label for="inputPassword">Mật khẩu</label>
+			<input type="password" name="password" id="inputPassword" class="form-control" required="required" placeholder="Nhập vào password">
+		</div>
+
+		<button type="submit" class="btn btn-primary">Đăng nhập</button>
+		<label style="margin-left:30px"><a href="/user/register.html">Bạn chưa có tài khoản?</a></label>
+	</form>
+	{% endif %}
+ </div>
+
+ <div class="recent">
+	 <h3>Các bài viết mới</h3>
+	 <ul>
+	 {% for article in four_articles %}
+	 <li><a href="/article/{{ article.id }}">{{ article.title }}</a></li>
+	 {% endfor %}
+	 </ul>
+ </div>
+ <div class="categories">
+	 <h3>Chủ đề</h3>
+	 <ul>
+	 {% for category in four_category %}
+	 <li><a href="/category/{{ category.id }}">{{ category.name }}</a></li>
+	 {% endfor %}
+	 </ul>
+ </div>
+ <div class="clearfix"></div>
+</div>
+{% endblock %}

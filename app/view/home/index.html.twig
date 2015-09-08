@@ -1,0 +1,21 @@
+{% extends 'layout/index.html.twig' %}
+{% block content %}
+<div class="col-md-8 content-main">
+	<div class="content-grid">
+	{% if articles %}
+    {% for article in articles %}
+	 
+	 <div class="content-grid-info">
+		 <img src="{{ article.image_url }}" alt=""/>
+		 <div class="post-info">
+		 <h4><a href="/article/{{ article.id }}">{{ article.title }}</a></h4>
+		 <p>{{ article.date_up|date('M d, Y') }} / {{ number_comment[article.id] }} Comments</p>
+		 <p>{{ article.description }}</p>
+		 <a href="/article/{{ article.id }}"><span></span>READ MORE</a>
+		 </div>
+	 </div>
+	{% endfor %}
+	{% endif %}
+	</div>
+</div>
+{% endblock %}
