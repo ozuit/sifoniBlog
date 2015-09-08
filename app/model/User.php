@@ -25,7 +25,7 @@ class User extends Base {
 
 	public function authRegister($postData)
 	{
-		$user = User::where('username', '=', $postData['username'])->get()[0];
+		$user = User::where('username', '=', $postData['username'])->get()[0];    
         
         if ($user) {
             return false;

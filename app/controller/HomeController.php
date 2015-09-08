@@ -35,8 +35,8 @@ class HomeController extends Base {
             $data['tags_name'][] = Tags::where('id', '=', $idtag['tag_id'])->get()[0];
         }
 
-        $data['comments'] = Comment::where('article_id', '=', $article_id)->get();
-
+        $data['comments'] = Comment::join('users', 'users.id', '=', 'comments.user_id')->where('article_id', '=', $article_id)->select('username', 'date', 'comment')->get();
+        
         $data['four_articles'] = Article::orderBy('id','desc')->limit(5)->get();
         $data['four_category'] = Category::orderBy('id','desc')->limit(5)->get();
 

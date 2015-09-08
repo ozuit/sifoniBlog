@@ -24,7 +24,7 @@ class UserController extends Base
 	        $postData = $this->getPostData();
 	        if ($user = User::authRegister($postData)) {
 	        	$this->app['session']->set('logged', $user);
-	            $this->redirect('home');
+	            return $this->redirect('home');
 	        } else {
 	            $data['error_register'] = 'Username đã tồn tại, hãy chọn tên đăng nhập khác!';
 	            $data['postData'] = $postData;
@@ -50,7 +50,7 @@ class UserController extends Base
 	        $postData = $this->getPostData();
 	        if ($user = User::authLogin($postData)) {
 	        	$this->app['session']->set('logged', $user);
-	            $this->redirect('home');
+	            return $this->redirect('home');
 	        } else {
 	            $data['error_login'] = 'Username hoặc mật khẩu không đúng!';
 	        }
