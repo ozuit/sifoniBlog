@@ -39,7 +39,7 @@
 	 <h3>Các bài viết mới</h3>
 	 <ul>
 	 {% for article in four_articles %}
-	 <li><a href="/article/{{ article.id }}">{{ article.title }}</a></li>
+	 <li><a href="/article/{{ article.id }}.html">{{ article.title }}</a></li>
 	 {% endfor %}
 	 </ul>
  </div>
@@ -47,7 +47,7 @@
 	 <h3>Chủ đề</h3>
 	 <ul>
 	 {% for category in four_category %}
-	 <li><a href="/category/{{ category.id }}">{{ category.name }}</a></li>
+	 <li><a href="/category/{{ category.id }}/">{{ category.name }}</a></li>
 	 {% endfor %}
 	 </ul>
  </div>

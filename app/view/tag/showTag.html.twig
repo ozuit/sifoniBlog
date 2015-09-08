@@ -2,7 +2,7 @@
 {% block content %}
 <div class="col-md-8 content-main">
 	<div class="content-grid">
-	{% if articles %}
+	{% if articles is defined %}
     {% for article in articles %}
 	 
 	 <div class="content-grid-info">
@@ -19,3 +19,4 @@
 	</div>
 </div>
 {% endblock %}
+

@@ -59,4 +59,27 @@ class HomeController extends Base {
 
         return $this->render('category/showCategory.html.twig', $data);
     }
+
+    public function showTagAction($tag_name)
+    {
+        $data = array();
+
+        $tag_name = trim($tag_name);
+        $tag_id = Tags::where('name', '=', $tag_name)->select('id')->get()[0];
+
+        $data['articles_id'] =  Articles_Tags::where('tag_id', '=', $tag_id['id'])->select('article_id')->get();
+
+        foreach ($data['articles_id'] as $article_id) {
+            $data['articles'][] = Article::where('id', '=', $article_id['article_id'])->get()[0];
+        }
+
+        foreach ($data['articles'] as $article) {
+            $data['number_comment'][$article['id']] = count(Comment::where('article_id', '=', $article['id'])->get());
+        }
+
+        $data['four_articles'] = Article::orderBy('id','desc')->limit(5)->get();
+        $data['four_category'] = Category::orderBy('id','desc')->limit(5)->get();
+
+        return $this->render('tag/showTag.html.twig', $data);
+    }
 }
