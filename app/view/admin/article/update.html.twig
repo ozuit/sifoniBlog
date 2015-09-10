@@ -1,0 +1,83 @@
+{% extends 'admin/layout.html.twig' %}
+{% block content %}
+<!-- CKEditor Javascript -->
+<script src="/library/ckeditor/ckeditor.js"></script>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+	   <form method="POST" role="form" enctype="multipart/form-data">
+
+		  <div class="form-group">
+		    <label for="">Title</label>
+		    <input type="text" class="form-control" id="inputTitle" name="title" placeholder="Input a title" value="{{ article.title }}">
+		  </div>
+
+		  <div class="form-group">
+		    <label for="">Slug</label>
+		    <input type="text" class="form-control" id="inputSlug" name="slug" placeholder="Input a slug" value="{{ article.slug }}">
+		  </div>
+
+		  <div class="form-group">
+		    <label for="">Description</label>
+		    <textarea name="description" id="inputMota" class="form-control" rows="2" required="required" placeholder="Input a description">{{ article.description }}</textarea>
+		  </div>
+
+		  <div class="form-group">
+		    <label for="">Image thumb</label>
+		    <div class="form-group">
+                <input id="file-4" type="file" class="file" data-upload-url="/admin/upload/image.html" name="thumb">
+                <input type="hidden" name="thumb_current" value="{{ article.thumb }}">
+            </div>
+		  </div>
+
+		  <script>
+
+		    $(".btn-warning").on('click', function() {
+		        if ($('#file-4').attr('disabled')) {
+		            $('#file-4').fileinput('enable');
+		        } else {
+		            $('#file-4').fileinput('disable');
+		        }
+		    });    
+		    $(".btn-info").on('click', function() {
+		        $('#file-4').fileinput('refresh', {previewClass:'bg-info'});
+		    });
+		  </script>
+
+		  <div class="form-group">
+		    <label for="">Category</label>
+		    <select name="category_id" id="input" class="form-control" required="required">
+		      <option value="">-- Select One --</option>
+		      {% for category in categories %}
+		      <option value="{{ category.id }}">{{ category.name }}</option>
+		      {% endfor %}
+		    </select>
+		  </div>
+
+		  <div class="form-group">
+		    <label for="">Content</label>
+		    <textarea name="content" id="ckeditor1" class="form-control" placeholder="Input contents">{{ article.content }}</textarea>
+		  </div>
+
+	  	  <script>
+		  CKEDITOR.replace( 'ckeditor1', {
+		    uiColor: '#27A5E0',
+		    height: 300,
+		    toolbarCanCollapse: true,
+		    filebrowserImageUploadUrl: "http://sifoni.cc/library/ckeditor/plugins/imgArticles.php"
+		  });
+		  </script>
+
+		  <div class="form-group">
+		    <label for="">Tags</label>
+		    <input type="text" class="form-control" name="tags" placeholder="Mỗi tag cách nhau bởi dấu phẩy, ví dụ: php, mysql,…" value="{{ article.tags }}">
+		  </div>
+
+		  <input type="hidden" name="id" value="{{ article.id }}">
+
+		  <button type="submit" class="btn btn-success">Save</button>
+		  <a href="/admin/article/list.html"><button type="button" class="btn btn-primary">Cancle</button></a>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -13,7 +13,7 @@
 	{% set logged = app.session.get('logged') %}
 	{% set username = logged['username'] %}
 	<ul class="nav nav-theme">	
-		<li><a href="index.php?c=user&m=update&p=home">Welcome <strong>{{ username }}</strong></a></li>
+		<li><a href="">Welcome <strong>{{ username }}</strong></a></li>
 	    <li><a href="/user/logout/">Đăng xuất</a></li>
     </ul>
     {% else %}
