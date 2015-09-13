@@ -2,7 +2,8 @@
 
 return array(
     '/' => array(
-        '/' => 'HomeController:index:home::get',
+        '/' => 'IndexController:index:index::get',
+        '/article/page={page}' => 'HomeController:index:home::page=1',
         '/contact.html' => 'ContactController:index:contact::get',
         '/article/{article_slug}.html' => 'HomeController:showArticle:article::article_slug',
         '/category/{category_slug}/' => 'HomeController:showCategory:category::category_slug',

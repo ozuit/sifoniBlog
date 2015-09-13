@@ -17,5 +17,22 @@
 	{% endfor %}
 	{% endif %}
 	</div>
+	<div class="text-center">
+		<ul class="pagination-md" id="phantrang"></ul>
+	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#phantrang").twbsPagination({
+	        totalPages: {{pagenum}},
+	        visiblePages: 5,
+	        first: '«',
+            last: '»',
+            prev: '‹',
+            next: '›',
+	       	href: "page=\{\{number\}\}"
+	    });
+	});
+</script>
 {% endblock %}

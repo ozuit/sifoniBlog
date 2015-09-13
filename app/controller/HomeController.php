@@ -10,10 +10,19 @@ use App\Model\Articles_Tags;
 use App\Model\Tags;
 
 class HomeController extends Base {
-    public function indexAction() {
+    public function indexAction($page) {
     	$data = array();
 
-        $data['articles'] = Article::orderBy('id', 'desc')->get();
+        $pagesize = 4;
+        $total = Article::count();
+        $data['pagenum'] = ceil($total/$pagesize);
+        // $page = (isset($_GET['page']) && (int)$_GET['page']>0) ? $_GET['page'] : 1;
+        $data['articles'] = Article::orderBy('id', 'desc')->forPage($page, $pagesize)->get();
+
+        // echo "<pre>";
+        // print_r($data['articles']);
+        // die();
+
         foreach ($data['articles'] as $article) {
         	$data['number_comment'][$article['id']] = count(Comment::where('article_id', '=', $article['id'])->get());
         }
@@ -48,6 +57,7 @@ class HomeController extends Base {
         $data = array();
 
         $data['articles'] = Article::orderBy('id', 'desc')->get();
+
         foreach ($data['articles'] as $article) {
             $data['number_comment'][$article['id']] = count(Comment::where('article_id', '=', $article['id'])->get());
         }
