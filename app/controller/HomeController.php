@@ -10,18 +10,13 @@ use App\Model\Articles_Tags;
 use App\Model\Tags;
 
 class HomeController extends Base {
-    public function indexAction($page) {
+    public function indexAction($page_num) {
     	$data = array();
 
         $pagesize = 4;
         $total = Article::count();
         $data['pagenum'] = ceil($total/$pagesize);
-        // $page = (isset($_GET['page']) && (int)$_GET['page']>0) ? $_GET['page'] : 1;
-        $data['articles'] = Article::orderBy('id', 'desc')->forPage($page, $pagesize)->get();
-
-        // echo "<pre>";
-        // print_r($data['articles']);
-        // die();
+        $data['articles'] = Article::orderBy('id', 'desc')->forPage($page_num, $pagesize)->get();
 
         foreach ($data['articles'] as $article) {
         	$data['number_comment'][$article['id']] = count(Comment::where('article_id', '=', $article['id'])->get());
@@ -93,5 +88,17 @@ class HomeController extends Base {
         $data['four_category'] = Category::orderBy('id','desc')->limit(5)->get();
 
         return $this->render('tag/showTag.html.twig', $data);
+    }
+
+    public function searchAction()
+    {
+        $data = array();
+
+        $data['result'] = Article::whereRaw("MATCH (title, content) AGAINST ('".$_GET['keyword']."' IN NATURAL LANGUAGE MODE)")->get();
+        
+        $data['four_articles'] = Article::orderBy('id','desc')->limit(5)->get();
+        $data['four_category'] = Category::orderBy('id','desc')->limit(5)->get();
+
+        return $this->render('search/index.html.twig', $data);
     }
 }

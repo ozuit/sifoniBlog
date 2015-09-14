@@ -35,33 +35,20 @@ class UserController extends Base
 	}
 
 	public function loginAction()
-	{
-		$data = array();
-
-		$data['articles'] = Article::orderBy('id', 'desc')->get();
-        foreach ($data['articles'] as $article) {
-        	$data['number_comment'][$article['id']] = count(Comment::where('article_id', '=', $article['id'])->get());
+	{ 
+		$postData['username'] = $_POST['username'];
+		$postData['password'] = $_POST['password'];
+        if ($user = User::authLogin($postData)) {
+        	$this->app['session']->set('logged', $user);
+            return 'true';
+        } else {
+            return 'false';
         }
-
-        $data['four_articles'] = Article::orderBy('id','desc')->limit(5)->get();
-    	$data['four_category'] = Category::orderBy('id','desc')->limit(5)->get();
-    
-	    if ($this->isPostRequest()) {
-	        $postData = $this->getPostData();
-	        if ($user = User::authLogin($postData)) {
-	        	$this->app['session']->set('logged', $user);
-	            return $this->redirect('home');
-	        } else {
-	            $data['error_login'] = 'Username hoặc mật khẩu không đúng!';
-	        }
-	    }
-	   
-        return $this->render('home/index.html.twig', $data);
 	}
 
 	public function logoutAction()
 	{
 		$this->app['session']->remove('logged');
-		return $this->redirect('home');
+		return $this->redirect('index');
 	}
 }

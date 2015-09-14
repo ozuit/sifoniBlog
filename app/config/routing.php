@@ -3,7 +3,7 @@
 return array(
     '/' => array(
         '/' => 'IndexController:index:index::get',
-        '/article/page={page}' => 'HomeController:index:home::page=1',
+        '/article/page={page_num}' => 'HomeController:index:home::page_num=1',
         '/contact.html' => 'ContactController:index:contact::get',
         '/article/{article_slug}.html' => 'HomeController:showArticle:article::article_slug',
         '/category/{category_slug}/' => 'HomeController:showCategory:category::category_slug',
@@ -11,6 +11,7 @@ return array(
         '/user/login/' => 'UserController:login:login::get',
         '/user/logout/' => 'UserController:logout:logout::get',
         '/tag/{tag_slug}/' => 'HomeController:showTag:tag::tag_slug',
+        '/search' => 'HomeController:search:search::get',
     ),
     '/admin' => array(
         '/' => 'admin\AdminController:index:admin_index::get',

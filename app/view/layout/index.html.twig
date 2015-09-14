@@ -1,13 +1,10 @@
 {% extends 'default.html.twig' %}
+
 {% block sidebar %}
-<div class="col-md-4 content-right">
+<div class="col-md-4" style="float:right;">
  <div class="sidebar_account">
  	<h3>Đăng nhập hệ thống</h3>
- 	{% if error_login is defined %}
-		<div class="alert alert-danger" style="color:red">
-		   	{{ error_login }}
-		</div>
-	{% endif %}
+ 	<div data-alerts="alerts" data-titles="{'warning': '<em>Warning!</em>'}" data-ids="myid"></div>
 
 	{% if app.session.has('logged') %}
 	{% set logged = app.session.get('logged') %}
@@ -17,7 +14,7 @@
 	    <li><a href="/user/logout/">Đăng xuất</a></li>
     </ul>
     {% else %}
-	<form action="/user/login/" method="POST" role="form">
+	<form method="POST" role="form" id="frm_login">
 	
 		<div class="form-group">
 			<label for="inputUsername">Tên đăng nhập</label>
@@ -29,11 +26,36 @@
 			<input type="password" name="password" id="inputPassword" class="form-control" required="required" placeholder="Nhập vào password">
 		</div>
 
-		<button type="submit" class="btn btn-primary">Đăng nhập</button>
+		<button type="button" class="btn btn-primary" id="login">Đăng nhập</button>
 		<label style="margin-left:30px"><a href="/user/register.html">Bạn chưa có tài khoản?</a></label>
 	</form>
 	{% endif %}
  </div>
+
+<script type="text/javascript">
+	$('#login').click(function() {
+		var postData = $('#frm_login').serialize();
+		$.ajax({
+			url: '/user/login/',
+			type: 'POST',
+			dataType: 'text',
+			data: postData,
+			success: function (status) {
+				if (status == 'true') {
+					location.reload();
+				}
+				else {
+					$(document).trigger("add-alerts", [
+						{
+					      'message': "Username hoặc password không đúng!",
+					      'priority': 'danger'
+					    }
+					]);
+				};
+			}
+		});		
+	});
+</script>
 
  <div class="recent">
 	 <h3>Các bài viết mới</h3>

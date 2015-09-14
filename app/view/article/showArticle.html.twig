@@ -1,7 +1,7 @@
 {% extends 'layout/index.html.twig' %}
 {% block content %}
 <div class="col-md-8 content-main">
-	 
+	
   <div class="single-grid">
 		<h3><a href="/article/{{ article.slug }}">{{ article.title }}</a></h3>						 					 
 		<p>{{ article.content|raw }}</p>
@@ -14,7 +14,7 @@
 			{% endfor %}
 		</p>
   </div>
-
+  
 	 <ul class="comment-list">
 	 	<h5 class="list_comment">Các bình luận cho bài viết này</h5>
 	 	{% set count = 0 %}

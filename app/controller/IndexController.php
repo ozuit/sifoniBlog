@@ -11,6 +11,6 @@ class IndexController extends Base
 {
 	public function indexAction()
 	{
-		return $this->redirect('home', array('page' => 1));
+		return $this->redirect('home', array('page_num' => 1));
 	}
 }
