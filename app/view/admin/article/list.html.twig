@@ -19,9 +19,9 @@
                 <td>{{ article.title }}</td>
                 <td>{{ article.updated_at|date('d/m/Y') }}</td>
                 <td>{{ article.name }}</td>
-                <td class="text-center">
-                	<a href="/admin/article/update/{{article.slug}}.html"><button type="button" class="btn btn-warning">Update</button></a>
-                	<a href="/admin/article/delete/{{article.slug}}.html"><button type="button" class="btn btn-danger">Delete</button></a>
+                <td>
+                    <a href="/admin/article/update/{{article.slug}}.html" style="float:left"><img src="/styles/admin/img/file_edit.png" width="30px" height="30px"></a>
+                    <a href="/admin/article/delete/{{article.slug}}.html" style="float:left; margin-left:10px"><img src="/styles/admin/img/file_delete.png" width="30px" height="30px"></a>
                 </td>
             </tr>
         {% set i = i + 1 %}

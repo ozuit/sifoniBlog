@@ -39,6 +39,13 @@ class HomeController extends Base {
             $data['tags_name'][] = Tags::where('id', '=', $idtag['tag_id'])->get()[0];
         }
 
+        if ($this->isPostRequest()) {
+            $postData = $this->getPostData();
+            $postData['article_id'] = $data['article']['id'];
+            $postData['date'] = Date('Y-m-d');
+            Comment::insert($postData);
+        }
+
         $data['comments'] = Comment::join('users', 'users.id', '=', 'comments.user_id')->where('article_id', '=', $data['article']['id'])->select('username', 'date', 'comment')->get();
         
         $data['four_articles'] = Article::orderBy('id','desc')->limit(5)->get();
@@ -94,7 +101,7 @@ class HomeController extends Base {
     {
         $data = array();
 
-        $data['result'] = Article::whereRaw("MATCH (title, content) AGAINST ('".$_GET['keyword']."' IN NATURAL LANGUAGE MODE)")->get();
+        $data['result'] = Article::whereRaw("MATCH (title, content) AGAINST (? IN BOOLEAN MODE)", array($_GET['q']))->get();
         
         $data['four_articles'] = Article::orderBy('id','desc')->limit(5)->get();
         $data['four_category'] = Category::orderBy('id','desc')->limit(5)->get();
