@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use Sifoni\Controller\Base;
 use App\Model\Article;
 use App\Model\Category;
+use App\Model\Contact;
 
 /**
 * 
@@ -18,6 +19,7 @@ class ArticleController extends Base
 		$data['title'] = 'Trang Admin | List Article';
 		$data['title_page'] = 'Danh sách các bài viết';
         $data['articles'] = Article::join('Categories', 'articles.category_id', '=', 'categories.id')->orderBy('articles.id', 'desc')->select('articles.id','title','updated_at','name','articles.slug')->get();
+        $data['messages'] = Contact::orderBy('id', 'desc')->limit(3)->get();
 
         return $this->render('admin/article/list.html.twig', $data);
 	}

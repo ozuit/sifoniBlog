@@ -22,6 +22,7 @@ return array(
         '/article/update/{article_slug}.html' => 'admin\ArticleController:update:update_article::article_slug',
         '/article/delete/{article_slug}.html' => 'admin\ArticleController:delete:delete_article::article_slug',
         '/upload/image.html' => 'admin\UploadController:image:upload_image::get',
+        'contact/list.html' => 'admin\ContactController:list:list_contact::get',
     )
 );
 ?>

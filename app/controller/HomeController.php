@@ -13,7 +13,7 @@ class HomeController extends Base {
     public function indexAction($page_num) {
     	$data = array();
 
-        $pagesize = 4;
+        $pagesize = 3;
         $total = Article::count();
         $data['pagenum'] = ceil($total/$pagesize);
         $data['articles'] = Article::orderBy('id', 'desc')->forPage($page_num, $pagesize)->get();
