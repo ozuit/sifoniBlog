@@ -13,11 +13,11 @@
 			 </div>
 			 <div class="contact-details">				 
 			 <form method="POST">
-				 <input type="text" name="name" placeholder="Name" required value="{% if app.session.has('logged') %} {{ app.session.get('logged')['fullname'] }} {% endif %}" />
-				 <input type="text" name="email" placeholder="Email" required value="{% if app.session.has('logged') %} {{ app.session.get('logged')['email'] }} {% endif %}"/>
-				 <input type="text" name="phone" placeholder="Phone" required value="{% if app.session.has('logged') %} {{ app.session.get('logged')['phone'] }} {% endif %}"/>
-				 <input type="text" name="city" placeholder="City Name" required value="" />
-				 <textarea name="message" placeholder="Message"></textarea>
+				 <input type="text" name="name" placeholder="Name"  value="{% if app.session.has('logged') %} {{ app.session.get('logged')['fullname'] }} {% endif %}" />
+				 <input type="text" name="email" placeholder="Email"  value="{% if app.session.has('logged') %} {{ app.session.get('logged')['email'] }} {% endif %}"/>
+				 <input type="text" name="phone" placeholder="Phone"  value="{% if app.session.has('logged') %} {{ app.session.get('logged')['phone'] }} {% endif %}"/>
+				 <input type="text" name="city" placeholder="City Name"  value="" />
+				 <textarea name="message" placeholder="Message" required></textarea>
 				 <input type="submit" value="SEND"/>
 			 </form>
 		  </div>

@@ -6,7 +6,7 @@
     {% for article in articles %}
 	 
 	 <div class="content-grid-info">
-		 <img src="/uploads/img/articles/{{ article.thumb }}" alt=""/>
+		 <img src="/uploads/images/articles/{{ article.thumb }}" alt=""/>
 		 <div class="post-info">
 		 <h4><a href="/article/{{ article.slug }}.html">{{ article.title }}</a></h4>
 		 <p>{{ article.updated_at|date('M d, Y') }} / {{ number_comment[article.id] }} Comments</p>

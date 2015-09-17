@@ -54,7 +54,7 @@ width: 90%;
 background:#dbdbdb;
 }
 .search form input[type="submit"] {
-background: url('/uploads/img/search.png')no-repeat 0px 0px;
+background: url('/uploads/images/search.png')no-repeat 0px 0px;
 width: 20px;
 height: 20px;
 border: none;
@@ -129,7 +129,7 @@ line-height:1.5em;
 margin-bottom:1em;
 }
 .post-info a span {
-background: url(/uploads/img/more.png) no-repeat 0px 3px;
+background: url(/uploads/images/more.png) no-repeat 0px 3px;
 height: 18px;
 width: 15px;
 display: inline-block;
@@ -258,7 +258,7 @@ font-weight: 400;
 margin-bottom:1em;
 }
 .about-grid2 li {
-list-style-image: url(../../img/icon3.png);
+list-style-image: url(../../images/icon3.png);
 margin: 0 0 10px 20px;
 }
 .about-grid2 li a {
@@ -1047,7 +1047,7 @@ font-size: 1.1em;
 .sidebar_shop form {
   padding: 0 20px;
 }
-.cart {
+.number {
   color: #fff;
   background-color: #FE6B6B;
   border: 1px solid #FE6B6B;

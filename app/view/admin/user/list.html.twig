@@ -1,0 +1,35 @@
+{% extends 'admin/layout.html.twig' %}
+{% block content %}
+<div class="dataTable_wrapper">
+    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i = 1 %}
+        {% for user in users %}     
+            <tr class="odd gradeX">
+                <td class="text-center">{{ i }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.fullname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.address }}</td>
+                <td>
+                    <a href="/admin/user/delete/{{user.id}}"><center><img src="/styles/admin/img/delete.png" width="30px" height="30px"></center></a>
+                </td>
+            </tr>
+        {% set i = i + 1 %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
